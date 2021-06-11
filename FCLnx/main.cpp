@@ -6,6 +6,7 @@
 
 using namespace std;
 
+APU Apu;
 CpuBus Cpubus;
 CPU Cpu;
 PPU2 Ppu2;
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
     //cartridge.read_from_file("../Data/Contra (U).nes", 131088);
     //2.模拟CPU（这里应该单开一个线程，每559纳秒执行一次的，但是图方便就先这么做了）
     Cpu.reset();
+    Apu.init();
     Ppu2.reset();
     controller_right.init();
     controller_left.init();

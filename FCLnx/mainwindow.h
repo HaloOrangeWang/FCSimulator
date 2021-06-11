@@ -4,10 +4,25 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QThread>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 namespace Ui {
 class MainWindow;
 }
+
+class GameThread : public QThread
+{
+    Q_OBJECT
+
+public:
+    GameThread(QObject* parent = 0) : QThread(parent){}
+protected:
+    void run();
+signals:
+    void new_frame();
+};
 
 class MainWindow : public QMainWindow
 {
@@ -33,6 +48,11 @@ private:
     QRgb* pixels;
     clock_t start_time;
     int frame_interval;
+
+    ALCdevice* device;
+    ALCcontext* context;
+    ALuint source;
+    int al_status;
 
 private:
     Ui::MainWindow *ui;

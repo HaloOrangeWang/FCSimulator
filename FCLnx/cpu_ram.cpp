@@ -42,10 +42,8 @@ void CpuBus::save(uint16_t addr, uint8_t data)
     }else if (addr == 0x4016){
         controller_left.write_strobe(data);
         controller_right.write_strobe(data);
-    }else if (addr == 0x4017){
-    }else if (addr >= 0x4014 && addr < 0x4017){
-        // qDebug() << "0x4014 - 0x4017, Write to " << addr << endl;
-        // TODO: DMA和手柄的处理
+    }else if (addr >= 0x4000 && addr <= 0x4017){
+        Apu.write_data(uint8_t(addr - 0x4000), data);
     }else if (addr >= 0x4000 && addr < 0x6000){
         //qDebug() << "0x4000 - 0x6000, Cannot write to " << addr << endl;
     }else if (addr >= 0x6000 && addr < 0x8000){
@@ -90,6 +88,8 @@ uint8_t CpuBus::load(uint16_t addr)
         return controller_left.output_key_states();
     }else if (addr == 0x4017){
         return controller_right.output_key_states();
+    }else if (addr == 0x4015){
+        return Apu.read_4015();
     }else if (addr >= 0x4000 && addr < 0x6000){
         //qDebug() << "0x4000 - 0x6000, Cannot read " << addr << endl;
     }else if (addr >= 0x6000 && addr < 0x8000){

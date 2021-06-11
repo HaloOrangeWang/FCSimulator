@@ -1,6 +1,8 @@
 #ifndef TOTAL_H
 #define TOTAL_H
 
+#include "apu.h"
+#include "audio_map.h"
 #include "cpu.h"
 #include "cpu_ram.h"
 #include "ppu.h"
@@ -13,6 +15,7 @@
 #include "Mapper/mapper_2.h"
 
 extern CpuBus Cpubus;
+extern APU Apu;
 extern CPU Cpu;
 extern PPU2 Ppu2;
 extern PictureBus PpuBus;

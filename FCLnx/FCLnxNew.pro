@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = SimFCLnx
+TARGET = Step_06
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -28,6 +28,7 @@ SOURCES += \
         Mapper/mapper_0.cpp \
         Mapper/mapper_1.cpp \
         Mapper/mapper_2.cpp \
+        apu.cpp \
         cartridge.cpp \
         controller.cpp \
         cpu.cpp \
@@ -42,6 +43,8 @@ HEADERS += \
         Mapper/mapper_1.h \
         Mapper/mapper_2.h \
         Mapper/mapper_base.h \
+        apu.h \
+        audio_map.h \
         cartridge.h \
         colors_map.h \
         controller.h \
@@ -54,6 +57,10 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+# LIBS += \
+#         -L/usr/lib/x86_64-linux-gnu -lopenal
+LIBS += -lopenal
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
